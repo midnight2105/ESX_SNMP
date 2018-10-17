@@ -38,7 +38,7 @@ if ($global:DefaultVIServer) {
 #Prompt for Cluster Name
 $VMCluster = Read-Host "Enter the cluster name to set up SNMP"
 #Get esxcli from hosts in cluster
-#Replace authhas and privhash with correct hashes
+#Replace authhash and privhash with correct hashes
 $vmhosts = Get-cluster $vmcluster | Get-VMHost
 foreach ($vmhost in $vmhosts)
 {$esxcli = Get-EsxCli -VMhost $vmhost
