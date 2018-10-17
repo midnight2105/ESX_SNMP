@@ -1,4 +1,6 @@
 # Connect to vCenter
+#####################
+# Check to see if already connected and prompt if needed
 Write-Host "Connecting to VI Server"
 $global:DefaultVIServer
 
@@ -31,7 +33,12 @@ if ($global:DefaultVIServer) {
 		exit
 	}
 }
+
+#####################
+#Prompt for Cluster Name
 $VMCluster = Read-Host "Enter the cluster name to set up SNMP"
+#Get esxcli from hosts in cluster
+#Replace authhas and privhash with correct hashes
 $vmhosts = Get-cluster $vmcluster | Get-VMHost
 foreach ($vmhost in $vmhosts)
 {$esxcli = Get-EsxCli -VMhost $vmhost
